@@ -5,7 +5,7 @@ def binary_search_position(numbers, target):
     while True:
         if numbers[middle_index] == target :
             return middle_index
-        # 多加下行判斷式，來讓不存在的 List 的 Target 可以跳出迴圈
+        # 多加下行判斷式，來讓不存在的 List 的 Target 可以跳出迴圈。
         elif first_index == middle_index or last_index == middle_index :
             return -1
         elif numbers[middle_index] > target :
