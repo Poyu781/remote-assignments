@@ -1,0 +1,70 @@
+.page{
+    margin:0px;
+    font-family:Noto;
+  }
+  nav{
+    display:flex;
+    justify-content:space-between;
+    background-color:	#eeeeee;
+    align-items: center;
+    padding:-13px;
+    
+  }
+  nav .logo{
+    width:200px;
+    text-align:center;
+    }
+  nav .options{
+  
+    list-style:none;
+    display:flex;
+    width:350px;
+    margin-right:20px;
+    justify-content:space-around;
+  }
+  
+  .intromessage{
+    background-color:	#ccddee;
+    font-weight:bold;
+    font-size:20px;
+    text-align:center;
+    padding:60px;
+  }
+  
+  .title{
+    padding:25px;
+    font-weight:bold;
+    text-align:center;
+    font:40px;
+    margin-top:-2px;
+    margin-bottom:-2px;
+  }
+   
+  .block{
+    display:flex;
+    justify-content:center;
+  }    
+  .item{
+    font-size:13px;
+    text-align:center;
+    
+    width:450px;
+    height:80px;
+    background:#8899aa;
+    margin:10px;
+    margin-top:5px;
+    padding-top:5px;
+  
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  .button-container button {
+    background-color: #ddeeff;
+    width: 120px;
+    position: relative;top: 20px;
+    padding: 10px;
+    margin: 0 auto;
+  }
