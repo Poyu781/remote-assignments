@@ -1,81 +1,84 @@
+
+
 .page{
-    margin:0px;
-    font-family:Noto;
-  }
-     
-    nav{
-      display:flex;
-      justify-content:space-between;
-      background-color:	#eeeeee;
-      align-items: center;
-      padding:-13px;
-      
-      }
-    nav .logo{
-      width:200px;
-      text-align:center;
-      }
-    nav .options{
-  
-      list-style:none;
-      display:flex;
-      width:350px;
-      justify-content:space-around;
-    }
-  
-    .intro{
-        background-color:	#ccddee;
-        font-weight:bold;
-        font-size:30px;
-        width:100%;
-        text-align:center;
-        padding:60px;
-        border-style:none;
-    }
-  
-    .title{
-        padding:25px;
-        font-weight:bold;
-        text-align:center;
-        font:40px;
-        margin-top:-10px;
-        margin-bottom:-10px;
-    }
+  margin:0px;
+  font-family:Noto;
+}
    
-  #hidden{
-    display:none;
-  }
-  
-  .block{
+  nav{
     display:flex;
-    justify-content:center;
-  }     
-  .item{
-    font-size:13px;
-    text-align:center;
+    justify-content:space-between;
+    background-color:	#eeeeee;
+    align-items: center;
+    padding:-13px;
     
-    width:450px;
-    height:80px;
-    background:#8899aa;
-    margin:10px;
-    margin-top:5px;
-    padding-top:5px;
-  
+    }
+  nav .logo{
+    width:200px;
+    text-align:center;
+    }
+  nav .options{
+
+    list-style:none;
+    display:flex;
+    width:350px;
+    justify-content:space-around;
   }
-  
-  
-  
-  
-  
-    .button-container {
-      text-align: center;
+
+  .intro{
+      background-color:	#ccddee;
+      font-weight:bold;
+      font-size:30px;
+      width:100%;
+      text-align:center;
+      padding-top:50px;
+      padding-bottom:50px;
   }
-  
-  .button-container button {
-      background-color: #ddeeff;
-      width: 120px;
-      position: relative;top: -3px;
-      padding: 10px;
-      margin: 0 auto;
-  /*    */
+
+  .title{
+      padding:25px;
+      font-weight:bold;
+      text-align:center;
+      font:40px;
+      margin-top:-10px;
+      margin-bottom:-10px;
   }
+ 
+#hidden{
+  display:none;
+}
+
+.block{
+  display:flex;
+  justify-content:center;
+
+}
+.block > div {
+  width: 50%;
+  padding: 10px;
+}
+
+.item{
+  font-size:13px;
+  text-align:center;
+  height:80px;
+  background:#8899aa;
+  padding-top:5px;
+}
+
+.item + .item {
+  margin-top: 10px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button-container button {
+    background-color: #ddeeff;
+    width: 120px;
+    position: relative;top: -3px;
+    padding: 10px;
+    margin: 0 auto;
+/*    */
+}
