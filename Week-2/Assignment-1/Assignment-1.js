@@ -10,6 +10,7 @@ function max(numbers){
 
 function findPosition(numbers,target){
     for(let i=0; i<numbers.length; i++){
+
         if (numbers[i] === target){
             return i
         }
