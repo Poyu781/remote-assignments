@@ -5,18 +5,18 @@
   font-family:Noto;
 }
    
-nav{
-  display:flex;
-  justify-content:space-between;
-  background-color:	#eeeeee;
-  align-items: center;
-  padding:-13px;
-  
-  }
-nav .logo{
-  width:200px;
-  text-align:center;
-  }
+  nav{
+    display:flex;
+    justify-content:space-between;
+    background-color:	#eeeeee;
+    align-items: center;
+    padding:-13px;
+    
+    }
+  nav .logo{
+    width:200px;
+    text-align:center;
+    }
 nav .options{
 
   list-style:none;
@@ -53,21 +53,31 @@ nav .options{
   justify-content:center;
 
 }
-.block > div {
-  width: 50%;
-  padding: 10px;
-}
-
 .item{
   font-size:13px;
   text-align:center;
   height:80px;
   background:#8899aa;
   padding-top:5px;
+  
+}
+
+@media (max-width: 850px){
+.block > div {
+  width: 50%;
+  padding: 10px;
 }
 
 .item + .item {
   margin-top: 10px;
+}
+}
+
+@media (min-width: 850px){
+  .item{
+    width:400px;
+    margin: 10px;
+}
 }
 
 .button-container {
