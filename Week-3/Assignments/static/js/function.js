@@ -1,14 +1,23 @@
-document.querySelector('.button').addEventListener("click", ()=>{
-  const data = document.querySelector('input[name="number"]').value
-  document.querySelector('.input').innerHTML = data
-  document.querySelector('input[name="number"]').value = ''
-  
+let number;
+const button = document.querySelector('.button');
+const outputNumber = document.querySelector('.outputNumber');
+const input = document.querySelector('input[name="number"]');
+const answer = document.querySelector(".answer");
+// click
+button.addEventListener("click", ()=>{
+  number = input.value
+  getSum(number)
+  outputNumber.innerText = number
+  input.value = ''
+})
+
+// call api
+function getSum(number) {
   const request = new XMLHttpRequest()
   request.onload = function(){
     if (request.status >= 200 && request.status< 400){
-      const result = request.responseText
-      const span = document.querySelector(".answer")
-      span.innerHTML = result
+      const result = request.responseText 
+      answer.innerText = result
     } else {
       console.log('err')
     }
@@ -16,26 +25,6 @@ document.querySelector('.button').addEventListener("click", ()=>{
   request.onerror = function(){
     console.log('error')
   }
-  request.open('GET',`http://127.0.0.1:3000/data?number=${data}`,true)
+  request.open('GET',`http://127.0.0.1:3000/data?number=${number}`,true)
   request.send()
-})
-
-
-
-// const request = new XMLHttpRequest()
-// request.onload = function(){
-// if (request.status >= 200 && request.status< 400){
-//   console.log(request.responseText)
-//   const result = request.responseText
-//   const span = document.querySelector(".answer")
-//   span.innerHTML = result
-//   } else {
-//     console.log('err')
-//   }
-
-// }
-// request.onerror = function(){
-//   console.log('errpr')
-// }
-// request.open('GET',`http://127.0.0.1:3000/data?number=${data}`,true)
-// request.send()
+}
