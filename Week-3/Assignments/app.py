@@ -15,9 +15,8 @@ def search(number=None):
         return "Lack  Parameter"
     # 當 input 無法被轉化成 int 時，則執行 except 內的程式 
     try:
-        output = 0
-        for i in range(1,int(number)+1):
-            output += i
+        number = int(number)
+        output = number * (number+1)//2
         return str(output)            
     except:
         return "Wrong Parameter"
