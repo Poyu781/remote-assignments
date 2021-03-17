@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset= "utf-8"/>
+    <title>Week4_Assignment2</title>
+</head>
+
+<body>
+    <p>Data Section For Week4_Assignment2</p>
+    <ul class= "inputlist">
+    </ul>
+
+<script> 
+    function ajax(src, callback){
+        fetch(src)
+        .then(response => {
+            return response.json()
+        })
+        .then(json => {
+            callback(json)
+        })
+    }
+    
+    function render(data){
+        for(let i = 0; i < data.length; i++){
+            // 解構賦值
+            let { name, price, description } = data[i]
+            // let name = data[i].name
+            // let price = data[i].price
+            // let description = data[i].description
+            inputHTML = `
+                <p>name: ${name}</p>
+                <p>price: ${price}</p>
+                <p>description: ${description}</p>
+                `
+            let node = document.createElement("li");
+            node.innerHTML = inputHTML
+            document.querySelector(".inputlist").appendChild(node);
+        }
+    }
+    ajax("http://13.113.12.180:4000/api/1.0/remote-w4-data",render)
+</script>
+
+</body>  
+</html>  
+
