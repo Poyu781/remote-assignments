@@ -25,6 +25,7 @@ def sign_page():
 def checkSignSituation():
     # 從 Fetch 得到相對應的 data
     data = request.get_json()
+    print(data)
     # 連接資料庫
     connection.connect()
 
