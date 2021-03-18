@@ -2,7 +2,7 @@ import threading
 from time import sleep,time
 
 def do_job(number):
-    sleep(1)
+    sleep(5)
     print(f"Job {number} finished")
 # rewrite everything inside this main function and keep others untouched
 def main():

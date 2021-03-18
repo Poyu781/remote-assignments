@@ -6,38 +6,38 @@
 </head>
 
 <body>
-  <div method = "POST" class="signUp">
+  <form method = "POST"  id= "signUp">
     <p>
-      <h3>Sign Up</h3>
+      <h1 style = "backGround-color: aliceblue;">Sign Up</h1>
     </p>
     <p>
-      email : <input type = 'email' name = 'email' />
+      email : <br><input type = 'email' name = 'email' required/>
     </p>
     <p>
-      password : <input type = 'password' name = 'password' />
+      password : <br><input type = 'password' name = 'password' required/>
     </p>
     <p>
       <input type = 'submit' value = 'Sign Up'/>
     </p>
-  </div>
+  </form>
 
 
 
-  <div method = "POST"  class="sigIn">
+  <form method = "POST"   id= "signIn">
     <p>
-      <h3>Sign In</h3>
+      <h1 style = "backGround-color: aliceblue;">Sign In</h1>
     </p>
     <p>
-      email : <input type = 'email' name = 'email' />
+      email : <br><input type = 'email' name = 'email' required/>
     </p>
     <p>
-      password : <input type = 'password' name = 'password' />
+      password : <br><input type = 'password' name = 'password' required/>
     </p>
     <p>
       <input type = 'submit' value = 'Sign In'/>
     </p>
     <p class="errorReturnMessage" style="color:red"></p>
-  </div>
+  </form>
   
   
   <script src="static/js/signData.js"></script>
