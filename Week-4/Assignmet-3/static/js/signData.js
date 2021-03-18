@@ -1,5 +1,24 @@
 const errorMessage = document.querySelector('.errorReturnMessage');
 
+function fetchUser(url, email, password, func) {
+    // 將資料送傳到後端，來做後續資料庫的比對與建檔
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email, password })
+    })
+    // 後端會根據資料，給予相對應的訊息回前端
+    .then(response => {
+        return response.json()
+    })
+    .then(json => {
+        func(json['message'], email)
+    })
+}
+
 function setAction(message, email) {
     switch(message) {
         case 'Access Success':
@@ -15,26 +34,6 @@ function setAction(message, email) {
             break;
     }
 }
-
-function fetchUser(url, email, password) {
-    // 將資料送傳到後端，來做後續資料庫的比對與建檔
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({email, password })
-    })
-    // 後端會根據資料，給予相對應的訊息回前端
-    .then(response => {
-        return response.json()
-    })
-    .then(json => {
-        setAction(json['message'], email)
-    })
-}
-
 document.addEventListener('submit', (e) => {
     e.preventDefault()
     const form = e.target
