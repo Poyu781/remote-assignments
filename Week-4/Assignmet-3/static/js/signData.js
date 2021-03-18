@@ -1,45 +1,56 @@
-const form = document.querySelector('form')
-const signUpButton = document.querySelector('.signUp input[type="submit"]')
-const signUpErrorMessage = document.querySelector('.errorReturnMessage')
-const email = document.querySelector('input[name="email"]')
-const password = document.querySelector('input[name="password"]')
-signUpButton.style.backgroundColor = 'red';
+const button = document.querySelectorAll('input[type="submit"]')
+const errorMessage = document.querySelector('.errorReturnMessage')
+const email = document.querySelectorAll('input[name="email"]')
+const password = document.querySelectorAll('input[name="password"]')
 
-form.addEventListener('submit',(e)=>{
-    e.preventDefault()
-})
 
-signUpButton.addEventListener('click',() =>{
-    emailValue = email.value
-    passwordValue = password.value
-    fetch('/checksignin', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({'email': emailValue, 'password': passwordValue})
-}   )
-    .then(response => {
-        return response.json()
-    })
-    .then(json => {
-        console.log(json['message'])
-        if (json['message'] === "Access Success"){
-            window.location.href = '/welcomePage?email='+emailValue ;
+button.forEach( button => {
+    button.addEventListener('click',() =>{
+        let action = button.value ;
+        let emailValue ;
+        let passwordValue ;
+
+        if (action =="Sign Up"){
+            emailValue = email[0].value
+            passwordValue = password[0].value
         }
-        else if (json['message'] === "Email already Exist"){
-            signUpErrorMessage.innerText = "Email already Exist"
+        else if(action =="Sign In"){
+            emailValue = email[1].value
+            passwordValue = password[1].value            
         }
-        // else if (json['message'] === "Email or Password is wrong ! "){
-        //     signInErrorMessage.innerText = "Email or Password is wrong !"
-        // }
+
+        if (emailValue === "" | passwordValue === ""){
+            errorMessage.innerText = "Please Enter Email and Password"
+            return "wrong input" }
+        fetch('/checkSignSituation', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'email': emailValue, 'password': passwordValue, "status": action })
+        })
+        .then(response => {
+            return response.json()
+        })
+        .then(json => {
+            console.log(json['message'])
+            if (json['message'] === "Access Success"){
+                window.location.href = '/welcomePage?email='+emailValue ;
+            }
+            else if (json['message'] === "Email already Exist"){
+                
+                errorMessage.innerText = "Email already Exist , please try to Sign In your Account."
+
+            }
+            else if (json['message'] === "Email or Password is wrong ! "){
+                
+                errorMessage.innerText = "Email or Password is wrong !"
+
+            }
+        })
     })
-
-
 })
-
-
 
 
 

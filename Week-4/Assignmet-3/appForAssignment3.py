@@ -18,36 +18,47 @@ def home():
 def sign_page(): 
     return render_template("Assignment3.html")
 
-@app.route('/checksignin', methods = ["POST","GET"])
-def check_sign_up():
+
+@app.route('/checkSignSituation', methods = ["POST","GET"])
+def checkSignSituation():
     
     data = request.get_json()
-    print("1")
+    print(data)
+    print("2")
     print(data["email"], data["password"])
 
     connection.connect()
 
     with connection:
         with connection.cursor() as cursor:
-        # Create a new record
-            sql_search =  "SELECT id, email  FROM test WHERE email = %s"
-            cursor.execute(sql_search,(data['email'],))
-            if cursor.fetchone() :
-                # 加一個訊息，說這個 email 已經用過了
-                text = {"message" : "Email already Exist"}
-                print(text)
-                return json.dumps(text)
-            else:
-                sql_input = "INSERT INTO test (email, password) VALUES (%s, %s)"
-                cursor.execute(sql_input, (data['email'], data['password']))
-                connection.commit()
-                connection.close
-                text = {"message" : "Access Success"}
-                print(text)
-                return json.dumps(text)
-                
-        
-        
+            if data['status'] == 'Sign Up':
+                sql_search =  "SELECT id, email  FROM test WHERE email = %s"
+                cursor.execute(sql_search,(data['email'],))
+                if cursor.fetchone() :
+                    # 加一個訊息，說這個 email 已經用過了
+                    text = {"message" : "Email already Exist"}
+                    print(text)
+                    return json.dumps(text)
+                else:
+                    sql_input = "INSERT INTO test (email, password) VALUES (%s, %s)"
+                    cursor.execute(sql_input, (data['email'], data['password']))
+                    connection.commit()
+                    connection.close
+                    text = {"message" : "Access Success"}
+                    print(text)
+                    return json.dumps(text)
+            elif data['status'] == 'Sign In': 
+                sql_search =  "SELECT id, email  FROM test WHERE email = %s and password = %s"
+                cursor.execute(sql_search,(data['email'],data['password']))
+                if cursor.fetchone() :
+                    text = {"message" : "Access Success"}
+                    print(text)
+                    return json.dumps(text)
+                else:
+                    text = {"message" :"Email or Password is wrong ! "}
+                    print(text)
+                    return json.dumps(text)                    
+    return "s"
     
     
 
