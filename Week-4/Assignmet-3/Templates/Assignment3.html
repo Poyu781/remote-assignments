@@ -6,28 +6,26 @@
 </head>
 
 <body>
-  {% if error %}
-  <p><strong>Error:</strong> {{ error }}
-  {% endif %}
-  <form method = "POST" class="sigIn">
+  <form method = "POST" class="signUp">
     <p>
-      <h3>Sign In</h3>
+      <h3>Sign Up</h3>
     </p>
     <p>
       email : <input type = 'text' name = 'email' required />
     </p>
     <p>
-      password : <input type = 'text' name = 'password' required/>
+      password : <input type = 'password' name = 'password' required/>
     </p>
     <p>
       <input type = 'submit' value = 'Enter'/>
     </p>
   </form>
+  <p class="errorReturnMessage"></p>
 
 
-  <form method = "POST"  class="sigUp">
+  <form method = "POST"  class="sigIn">
     <p>
-      <h3>Sign Up</h3>
+      <h3>Sign In</h3>
     </p>
     <p>
       <input type = 'text' name = 'email'/>
@@ -39,6 +37,8 @@
       <input type = 'submit' value = 'Enter'/>
     </p>
   </form>
+  <p class="errorReturnMessage"></p>
+  
   <script src="static/js/signData.js"></script>
 </body>
 </html>
