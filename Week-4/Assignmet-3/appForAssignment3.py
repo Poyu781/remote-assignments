@@ -4,6 +4,8 @@ import json
 import pymysql.cursors
 
 app = Flask(__name__)
+
+# 建立連接資料庫資訊
 connection = pymysql.connect(host='localhost',
                             user='root',
                             password='root123',
@@ -18,54 +20,45 @@ def home():
 def sign_page(): 
     return render_template("Assignment3.html")
 
-
+# 前端回傳資料與資料庫互動
 @app.route('/checkSignSituation', methods = ["POST","GET"])
 def checkSignSituation():
-    
+    # 從 Fetch 得到相對應的 data
     data = request.get_json()
-    print(data)
-    print("2")
-    print(data["email"], data["password"])
-
+    # 連接資料庫
     connection.connect()
 
     with connection:
         with connection.cursor() as cursor:
-            if data['status'] == 'Sign Up':
-                sql_search =  "SELECT id, email  FROM test WHERE email = %s"
+            # 判斷是登入還是註冊
+            if data['status'] == 'signUp':
+                sql_search =  "SELECT id, email  FROM user WHERE email = %s"
                 cursor.execute(sql_search,(data['email'],))
                 if cursor.fetchone() :
-                    # 加一個訊息，說這個 email 已經用過了
                     text = {"message" : "Email already Exist"}
-                    print(text)
                     return json.dumps(text)
                 else:
-                    sql_input = "INSERT INTO test (email, password) VALUES (%s, %s)"
+                    sql_input = "INSERT INTO user (email, password) VALUES (%s, %s)"
                     cursor.execute(sql_input, (data['email'], data['password']))
                     connection.commit()
-                    connection.close
                     text = {"message" : "Access Success"}
-                    print(text)
                     return json.dumps(text)
-            elif data['status'] == 'Sign In': 
-                sql_search =  "SELECT id, email  FROM test WHERE email = %s and password = %s"
+
+            elif data['status'] == 'signIn': 
+                sql_search =  "SELECT id, email  FROM user WHERE email = %s and password = %s"
                 cursor.execute(sql_search,(data['email'],data['password']))
                 if cursor.fetchone() :
                     text = {"message" : "Access Success"}
-                    print(text)
                     return json.dumps(text)
                 else:
                     text = {"message" :"Email or Password is wrong ! "}
-                    print(text)
                     return json.dumps(text)                    
-    return "s"
-    
-    
 
+# 登入後畫面
 @app.route('/welcomePage', methods = ["POST","GET"])
 def welcomePage(email=None):
     email = request.args.get('email', email)
-    return f"hello, {email} ! Nice to meet you !"
+    return f"hello, {email} ! Welcome !"
 
 
 if __name__ == "__main__":

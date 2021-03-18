@@ -1,3 +1,5 @@
+<!-- 不好意思，有點偷懶！直接用 html 來寫，想說這樣不用看兩份檔案了？ -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +27,8 @@
         for(let i = 0; i < data.length; i++){
             // 解構賦值
             let { name, price, description } = data[i]
-            // let name = data[i].name
-            // let price = data[i].price
-            // let description = data[i].description
-            inputHTML = `
+            inputHTML = 
+                `
                 <p>name: ${name}</p>
                 <p>price: ${price}</p>
                 <p>description: ${description}</p>
