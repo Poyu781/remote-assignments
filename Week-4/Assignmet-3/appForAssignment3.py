@@ -54,7 +54,7 @@ def checkSignSituation():
                     text = {"message" :"Email or Password is wrong ! "}
                     return json.dumps(text)                    
 
-# 登入後畫面
+# 登入後的歡迎畫面
 @app.route('/welcomePage', methods = ["POST","GET"])
 def welcomePage(email=None):
     email = request.args.get('email', email)
