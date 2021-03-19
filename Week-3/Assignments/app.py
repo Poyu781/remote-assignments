@@ -1,5 +1,7 @@
-from flask import Flask, render_template
-from flask import request,url_for,redirect,make_response
+from flask import (Flask, render_template, request, url_for, redirect, make_response)
+import json
+
+
 app = Flask(__name__)
 
 # Assignment 1
@@ -12,14 +14,16 @@ def home():
 def search(number=None):
     number = request.args.get('number',number)
     if  number == None or len(number) == 0:
-        return "Lack  Parameter"
-    # 當 input 無法被轉化成 int 時，則執行 except 內的程式 
-    try:
-        number = int(number)
-        output = number * (number+1)//2
-        return str(output)            
-    except:
-        return "Wrong Parameter"
+        text = {"text" : "Lack  Parameter"}        
+    # 當 input 無法被轉化成 int 時，則執行 except 內的程式
+    else: 
+        try:
+            number = int(number)
+            output = number * (number+1)//2
+            text = {"text" : f"{output}"}       
+        except:
+            text = {"text" : "Wrong  Parameter"}
+    return json.dumps(text)
 
 # Assignment 3
 @app.route('/sum.html')

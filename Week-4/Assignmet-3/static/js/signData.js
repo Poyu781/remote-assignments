@@ -22,7 +22,7 @@ function fetchUser(url, email, password, func) {
 function setAction(message, email) {
     switch(message) {
         case 'Access Success':
-            window.location.href = '/welcomePage?email='+ email;
+            window.location.href = '/welcome?email='+ email;
             break;
         case 'Email already Exist':
             errorMessage.innerText = "Email already Exist , please try to Sign In your Account.";
@@ -41,7 +41,7 @@ document.addEventListener('submit', (e) => {
     const email = form.querySelector('input[name="email"]').value
     const password = form.querySelector('input[name="password"]').value
     console.log({email, password})
-    fetchUser(`/${form.id}`, email, password)
+    fetchUser(`/${form.id}`, email, password, setAction)
 })
 
 

@@ -18,13 +18,13 @@ connection = pymysql.connect(
 def home():
     return "Hello"
 
-@app.route('/homePage')
-def sign_page(): 
+@app.route('/home')
+def home_page(): 
     return render_template("Assignment3.html")
 
 # 前端回傳資料與資料庫互動
-@app.route('/signUp', methods = ["POST"])
-def signUp():
+@app.route('/sign_up', methods = ["POST"])
+def sign_up():
     # 從 Fetch 得到相對應的 data
     data = request.get_json()
     connection.connect()
@@ -43,8 +43,8 @@ def signUp():
                 return json.dumps(text)
 
 
-@app.route('/signIn', methods = ["POST"])
-def signIn():
+@app.route('/sign_in', methods = ["POST"])
+def sign_in():
     data = request.get_json()
     connection.connect()
     with connection:
@@ -61,8 +61,8 @@ def signIn():
 
 
 # 登入後的歡迎畫面
-@app.route('/welcomePage', methods = ["POST","GET"])
-def welcomePage(email=None):
+@app.route('/welcome', methods = ["POST","GET"])
+def welcome_page(email=None):
     email = request.args.get('email', email)
     return f"hello, {email} ! Welcome !"
 
